@@ -11,6 +11,10 @@ services:
     environment: 
       MYSQL_DATABASE: "docker_wordpress_db"
       MYSQL_ROOT_PASSWORD: "docker_wordpress_db_secret"
+		volumes:
+			- type: bind
+				source: /var/tmp
+				target: /var/lib/mysql
   php:
     build:
       context: .
