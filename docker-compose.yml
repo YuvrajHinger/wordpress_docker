@@ -1,0 +1,18 @@
+services:
+	nginx: 
+		image: nginx:stable-alpine
+		ports: 
+			- 80:80
+		volumes:
+			- ./wordpress:/var/www/html
+	mysql:
+		image: mysql:latest
+		environment:
+			MYSQL_DATABASE: docker_wordpress_db
+			MYSQL_ROOT_PASSWORD: docker_wordpress_db_secret
+	php:
+		build:
+			context: .
+			dockerfile: php8.2.dockerfile
+		volumes:
+			- ./wordpress:/var/www/html
